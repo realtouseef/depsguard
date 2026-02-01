@@ -1,0 +1,7 @@
+{
+  "cobra": {
+    "summary": "What: CLI framework\nWhere: Commands in cmd/\nRemoval: Possible with manual flag parsing",
+    "explained_by": "example",
+    "expires_at": "2026-05-03T00:00:00Z"
+  }
+}
