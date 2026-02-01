@@ -1,6 +1,6 @@
-# DepGuard
+# depsguard
 
-DepGuard is a fast, offline-first Go CLI that blocks new dependencies unless at least 40% of existing dependencies are explained.
+depsguard is a fast, offline-first Go CLI that blocks new dependencies unless at least 40% of existing dependencies are explained.
 
 Repository: https://github.com/realtouseef/depsguard
 
@@ -15,7 +15,7 @@ go install github.com/realtouseef/depsguard@latest
 From the root of a Node.js project with a package.json:
 
 ```bash
-depguard init
+depsguard init
 ```
 
 Add this script to package.json:
@@ -23,7 +23,7 @@ Add this script to package.json:
 ```json
 {
   "scripts": {
-    "preinstall": "depguard verify"
+    "preinstall": "depsguard verify"
   }
 }
 ```
@@ -31,33 +31,33 @@ Add this script to package.json:
 Explain dependencies as needed:
 
 ```bash
-depguard explain <dependency-name>
+depsguard explain <dependency-name>
 ```
 
 Check coverage:
 
 ```bash
-depguard audit
+depsguard audit
 ```
 
 ## Commands
 
 ```bash
-depguard init
-depguard verify
-depguard explain <dependency-name>
-depguard audit
+depsguard init
+depsguard verify
+depsguard explain <dependency-name>
+depsguard audit
 ```
 
 ## How It Works
 
-- On init, DepGuard snapshots dependencies into .depguard/baseline.json and creates .depguard/knowledge.json.
-- On verify, if new dependencies are detected, DepGuard deterministically selects 40% of all dependencies and requires valid explanations.
+- On init, depsguard snapshots dependencies into .depsguard/baseline.json and creates .depsguard/knowledge.json.
+- On verify, if new dependencies are detected, depsguard deterministically selects 40% of all dependencies and requires valid explanations.
 - Explanations expire after 90 days.
 
 ## Knowledge Format
 
-Each entry in .depguard/knowledge.json:
+Each entry in .depsguard/knowledge.json:
 
 ```json
 {
@@ -71,7 +71,7 @@ Each entry in .depguard/knowledge.json:
 
 ## Deterministic Selection
 
-DepGuard seeds selection using a commit SHA when running in CI, falling back to local time otherwise. It checks these environment variables:
+depsguard seeds selection using a commit SHA when running in CI, falling back to local time otherwise. It checks these environment variables:
 
 - GITHUB_SHA
 - CI_COMMIT_SHA
@@ -81,8 +81,8 @@ DepGuard seeds selection using a commit SHA when running in CI, falling back to 
 
 ## Output Files
 
-- .depguard/baseline.json
-- .depguard/knowledge.json
+- .depsguard/baseline.json
+- .depsguard/knowledge.json
 
 ## Example Files
 

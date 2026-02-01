@@ -22,7 +22,7 @@ var auditCmd = &cobra.Command{
 			return err
 		}
 		deps := pkg.AllDependencies()
-		knowledgePath := filepath.Join(util.DepguardDir(), "knowledge.json")
+		knowledgePath := filepath.Join(util.DepsguardDir(), "knowledge.json")
 		entries, err := knowledge.Load(knowledgePath)
 		if err != nil {
 			return err

@@ -8,8 +8,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "depguard",
-	Short: "DepGuard enforces dependency explanations",
+	Use:   "depsguard",
+	Short: "depsguard enforces dependency explanations",
 }
 
 func Execute() {

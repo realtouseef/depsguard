@@ -15,7 +15,7 @@ import (
 
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Initialize DepGuard baseline and knowledge store",
+	Short: "Initialize depsguard baseline and knowledge store",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		pkg, err := parser.LoadPackageJSON("package.json")
 		if err != nil {
@@ -23,7 +23,7 @@ var initCmd = &cobra.Command{
 		}
 
 		deps := pkg.AllDependencies()
-		dir := util.DepguardDir()
+		dir := util.DepsguardDir()
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			return err
 		}
@@ -40,9 +40,9 @@ var initCmd = &cobra.Command{
 			}
 		}
 
-		_, _ = fmt.Fprintln(cmd.OutOrStdout(), "DepGuard initialized.")
+		_, _ = fmt.Fprintln(cmd.OutOrStdout(), "depsguard initialized.")
 		_, _ = fmt.Fprintln(cmd.OutOrStdout(), "Next step: add this to package.json scripts:")
-		pretty, _ := json.MarshalIndent(map[string]string{"preinstall": "depguard verify"}, "", "  ")
+		pretty, _ := json.MarshalIndent(map[string]string{"preinstall": "depsguard verify"}, "", "  ")
 		_, _ = fmt.Fprintln(cmd.OutOrStdout(), string(pretty))
 		return nil
 	},

@@ -20,7 +20,7 @@ var verifyCmd = &cobra.Command{
 	Use:   "verify",
 	Short: "Verify dependency explanations before install",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		base, err := baseline.Load(filepath.Join(util.DepguardDir(), "baseline.json"))
+		base, err := baseline.Load(filepath.Join(util.DepsguardDir(), "baseline.json"))
 		if err != nil {
 			return err
 		}
@@ -44,7 +44,7 @@ var verifyCmd = &cobra.Command{
 
 		seed := util.ResolveSeed()
 		selected := selector.Select(allNames, 0.4, seed)
-		knowledgePath := filepath.Join(util.DepguardDir(), "knowledge.json")
+		knowledgePath := filepath.Join(util.DepsguardDir(), "knowledge.json")
 		entries, err := knowledge.Load(knowledgePath)
 		if err != nil {
 			return err
@@ -68,7 +68,7 @@ var verifyCmd = &cobra.Command{
 		sort.Strings(missing)
 
 		builder := strings.Builder{}
-		builder.WriteString("DepGuard blocked install.\n")
+		builder.WriteString("depsguard blocked install.\n")
 		builder.WriteString("New dependencies detected:\n")
 		for _, dep := range newDeps {
 			builder.WriteString("  - ")
@@ -81,7 +81,7 @@ var verifyCmd = &cobra.Command{
 			builder.WriteString(dep)
 			builder.WriteString("\n")
 		}
-		builder.WriteString("Run: depguard explain <dependency-name>\n")
+		builder.WriteString("Run: depsguard explain <dependency-name>\n")
 		return fmt.Errorf(builder.String())
 	},
 }

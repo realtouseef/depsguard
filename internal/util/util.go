@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-func DepguardDir() string {
-	return ".depguard"
+func DepsguardDir() string {
+	return ".depsguard"
 }
 
 func ResolveSeed() int64 {

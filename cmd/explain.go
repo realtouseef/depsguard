@@ -86,7 +86,7 @@ var explainCmd = &cobra.Command{
 			return fmt.Errorf("dependency name cannot be empty")
 		}
 
-		if err := os.MkdirAll(util.DepguardDir(), 0o755); err != nil {
+		if err := os.MkdirAll(util.DepsguardDir(), 0o755); err != nil {
 			return err
 		}
 
@@ -109,7 +109,7 @@ var explainCmd = &cobra.Command{
 			ExplainedBy: util.CurrentUser(),
 			ExpiresAt:   time.Now().Add(90 * 24 * time.Hour).Format(time.RFC3339),
 		}
-		knowledgePath := filepath.Join(util.DepguardDir(), "knowledge.json")
+		knowledgePath := filepath.Join(util.DepsguardDir(), "knowledge.json")
 		entries, err := knowledge.Load(knowledgePath)
 		if err != nil {
 			return err
