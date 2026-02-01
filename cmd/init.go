@@ -6,9 +6,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"depguard/internal/baseline"
-	"depguard/internal/parser"
-	"depguard/internal/util"
+	"github.com/realtouseef/depsguard/internal/baseline"
+	"github.com/realtouseef/depsguard/internal/parser"
+	"github.com/realtouseef/depsguard/internal/util"
 
 	"github.com/spf13/cobra"
 )

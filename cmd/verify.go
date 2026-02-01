@@ -7,11 +7,11 @@ import (
 	"strings"
 	"time"
 
-	"depguard/internal/baseline"
-	"depguard/internal/knowledge"
-	"depguard/internal/parser"
-	"depguard/internal/selector"
-	"depguard/internal/util"
+	"github.com/realtouseef/depsguard/internal/baseline"
+	"github.com/realtouseef/depsguard/internal/knowledge"
+	"github.com/realtouseef/depsguard/internal/parser"
+	"github.com/realtouseef/depsguard/internal/selector"
+	"github.com/realtouseef/depsguard/internal/util"
 
 	"github.com/spf13/cobra"
 )

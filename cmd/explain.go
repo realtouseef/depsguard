@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"depguard/internal/knowledge"
-	"depguard/internal/util"
+	"github.com/realtouseef/depsguard/internal/knowledge"
+	"github.com/realtouseef/depsguard/internal/util"
 
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"

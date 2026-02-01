@@ -6,9 +6,9 @@ import (
 	"sort"
 	"time"
 
-	"depguard/internal/knowledge"
-	"depguard/internal/parser"
-	"depguard/internal/util"
+	"github.com/realtouseef/depsguard/internal/knowledge"
+	"github.com/realtouseef/depsguard/internal/parser"
+	"github.com/realtouseef/depsguard/internal/util"
 
 	"github.com/spf13/cobra"
 )

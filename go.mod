@@ -1,4 +1,4 @@
-module depguard
+module github.com/realtouseef/depsguard
 
 go 1.22
 

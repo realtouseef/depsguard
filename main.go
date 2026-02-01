@@ -1,6 +1,6 @@
 package main
 
-import "depguard/cmd"
+import "github.com/realtouseef/depsguard/cmd"
 
 func main() {
 	cmd.Execute()
