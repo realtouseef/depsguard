@@ -1,4 +1,4 @@
-package knowledge
+package storage
 
 import (
 	"encoding/json"
@@ -24,11 +24,11 @@ func (e Entry) IsValid(now time.Time) bool {
 	return timestamp.After(now)
 }
 
-func Load(path string) (map[string]Entry, error) {
+func LoadKnowledge(path string) (map[string]Entry, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return map[string]Entry{}, nil
+			return nil, fmt.Errorf("knowledge.json not found; run depsguard init")
 		}
 		return nil, err
 	}
@@ -37,12 +37,12 @@ func Load(path string) (map[string]Entry, error) {
 	}
 	entries := map[string]Entry{}
 	if err := json.Unmarshal(data, &entries); err != nil {
-		return nil, fmt.Errorf("failed to parse knowledge.json: %w", err)
+		return nil, fmt.Errorf("failed to parse knowledge.json: %w; delete .depsguard/knowledge.json and rerun depsguard init", err)
 	}
 	return entries, nil
 }
 
-func Save(path string, entries map[string]Entry) error {
+func SaveKnowledge(path string, entries map[string]Entry) error {
 	data, err := json.MarshalIndent(entries, "", "  ")
 	if err != nil {
 		return err

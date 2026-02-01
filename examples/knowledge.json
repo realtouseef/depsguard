@@ -1,7 +1,7 @@
 {
-  "cobra": {
-    "summary": "What: CLI framework\nWhere: Commands in cmd/\nRemoval: Possible with manual flag parsing",
-    "explained_by": "example",
+  "express": {
+    "summary": "Fast web framework for Node.js",
+    "explained_by": "john.doe@example.com",
     "expires_at": "2026-05-03T00:00:00Z"
   }
 }

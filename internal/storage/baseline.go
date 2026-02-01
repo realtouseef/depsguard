@@ -1,4 +1,4 @@
-package baseline
+package storage
 
 import (
 	"encoding/json"
@@ -9,7 +9,21 @@ import (
 
 type Baseline struct {
 	Dependencies map[string]string `json:"dependencies"`
-	CreatedAt    string            `json:"created_at"`
+	LastUpdated  string            `json:"last_updated"`
+}
+
+func DepsguardDir() string {
+	return ".depsguard"
+}
+
+func EnsureDepsguardDir() error {
+	if _, err := os.Stat(DepsguardDir()); err != nil {
+		if os.IsNotExist(err) {
+			return fmt.Errorf("depsguard not initialized; run depsguard init")
+		}
+		return err
+	}
+	return nil
 }
 
 func NewBaseline(deps map[string]string) Baseline {
@@ -19,18 +33,21 @@ func NewBaseline(deps map[string]string) Baseline {
 	}
 	return Baseline{
 		Dependencies: copy,
-		CreatedAt:    time.Now().Format(time.RFC3339),
+		LastUpdated:  time.Now().Format(time.RFC3339),
 	}
 }
 
-func Load(path string) (Baseline, error) {
+func LoadBaseline(path string) (Baseline, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
+		if os.IsNotExist(err) {
+			return Baseline{}, fmt.Errorf("baseline.json not found; run depsguard init")
+		}
 		return Baseline{}, err
 	}
 	var base Baseline
 	if err := json.Unmarshal(data, &base); err != nil {
-		return Baseline{}, fmt.Errorf("failed to parse baseline.json: %w", err)
+		return Baseline{}, fmt.Errorf("failed to parse baseline.json: %w; delete .depsguard/baseline.json and rerun depsguard init", err)
 	}
 	if base.Dependencies == nil {
 		base.Dependencies = map[string]string{}
@@ -38,7 +55,7 @@ func Load(path string) (Baseline, error) {
 	return base, nil
 }
 
-func Save(path string, base Baseline) error {
+func SaveBaseline(path string, base Baseline) error {
 	data, err := json.MarshalIndent(base, "", "  ")
 	if err != nil {
 		return err

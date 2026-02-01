@@ -7,7 +7,7 @@ Repository: https://github.com/realtouseef/depsguard
 ## Install
 
 ```bash
-go install github.com/realtouseef/depsguard@latest
+go install github.com/realtouseef/depsguard/cmd/depsguard@latest
 ```
 
 ## Quickstart
